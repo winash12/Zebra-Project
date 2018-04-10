@@ -1,0 +1,18 @@
+#!/bin/tcsh
+#
+setenv DEFAULT_DATA_DIR /zd/meso-amer
+
+if (! $?ZEB_TOPDIR) setenv ZEB_TOPDIR /zebra5
+if (! $?ZEB_PROJECT) then
+	setenv ZEB_PROJDIR /zebra5/project/meso-amer
+endif
+
+setenv PATH ${PATH}:./scripts
+
+if (! $?DATA_DIR) setenv DATA_DIR $DEFAULT_DATA_DIR
+if (! $?ZEB_EVENTLOGGER) \
+    setenv ZEB_EVENTLOGGER "$ZEB_TOPDIR/bin/EventLogger -w"
+if (! $?DEFAULT_CONFIG) setenv DEFAULT_CONFIG empty
+
+# The spool dir is where images are dumped by batch-plot
+setenv BATCH_IMAGE_SPOOL "$ZEB_PROJDIR/images"

@@ -1,0 +1,104 @@
+!
+! $Id: spol,v 1.1 1998/10/01 15:12:45 corbet Exp $
+!
+
+require radar
+require contour
+require color-table
+
+!
+! Simple radar support stuff
+!
+procedure toggle_main
+        local fld PDParam("p_polar", "field")
+        if (fld = "maxdz")
+                param p_polar field radialvelocity
+!                param p_radar color-table ncarvel
+        else
+                param p_polar field maxdz
+!                param p_radar color-table ncarrefl
+        endif
+endprocedure
+
+
+
+
+
+!
+! Support for the p_radar PD component.
+!
+
+define widget spol-middle intmenu 'radar middle'
+	title 'Radar options'
+	line
+	submenu 'Fields' 'spol-fields'
+	submenu 'Representation' 'spol-rep'
+	submenu 'Color tables' Color-tables
+	line
+	entry 'Highlighting...' 'popup highlight'
+endmenu
+
+
+
+define widget spol-fields intmenu 'x'
+	title 'SPol fields'
+	line
+	entry 'maxdz' 'param #icon_component field maxdz' \
+		(PDParam (icon_component, 'field') = 'maxdz')
+	entry 'radialvelocity' 'param #icon_component field radialvelocity' \
+		(PDParam (icon_component, 'field') = 'radialvelocity')
+	line
+	entry 'Pop up field chooser widget' 'popup FChooser'
+endmenu
+
+
+
+
+define widget spol-rep intmenu 'x'
+	line
+	entry 'Raster representation' \
+		'param #icon_component representation raster' \
+		(PDParam (icon_component, 'representation') = 'raster')
+	entry 'Contour representation' \
+		'param #icon_component representation contour' \
+		(PDParam (icon_component, 'representation') = 'contour')
+	entry 'Filled contour representation' \
+		'param #icon_component representation filled-contour' \
+		(PDParam (icon_component, 'representation') = 'filled-contour')
+	line
+	submenu 'Grid size ratio' spol-gratio
+	submenu 'Contour plot options' spol-contour
+endmenu
+
+
+define widget spol-contour intmenu 'x'
+	title 'Contour options'
+	line
+	submenu 'Label options' 'contour-label-options'
+	entry 'Color-coded contours' 'ToggleBoolean color-mono' \
+		(PDParam(icon_component,'color-mono') <> 'true')
+	submenu '(Monochrome) contour color' 'simple-color'
+	submenu 'Line width' linewidth
+endmenu
+
+
+define widget spol-gratio intmenu 'x'
+	title 'Grid ratio'
+	line
+	entry '1 (Highest resolution)' \
+		'parameter #icon_component grid-size-ratio 0' \
+		(PDParam (icon_component, 'grid-size-ratio') = '0')
+	entry '3' 'parameter #icon_component grid-size-ratio 3' \
+		(PDParam (icon_component, 'grid-size-ratio') = '3')
+	entry '5' 'parameter #icon_component grid-size-ratio 5' \
+		(PDParam (icon_component, 'grid-size-ratio') = '5')
+	entry '10' 'parameter #icon_component grid-size-ratio 10' \
+		(PDParam (icon_component, 'grid-size-ratio') = '10')
+	entry '20 (Horribly low resolution)' \
+		'parameter #icon_component grid-size-ratio 20' \
+		(PDParam (icon_component, 'grid-size-ratio') = '20')
+endmenu
+
+
+
+

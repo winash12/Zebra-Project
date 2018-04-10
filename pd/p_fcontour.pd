@@ -1,0 +1,32 @@
+!
+! Fancy generic plot description intended to work with filled or line 
+! contours.  Uses line contours by default.  Platform and field need to be
+! filled in.
+!
+global
+	pd-name:		p_fcontour
+p_fcontour
+	color:			yellow
+	color-table:		carbone17
+	color-mono:		false
+	do-labels:		false
+	field:			SOMETHING
+!	field-select-command:	ContourFieldSelect
+!	field-menu-extras:	mono|Monochrome contours
+	grid-method:		bilinear
+	icon:			grid_xsect
+	icon-left-menu:		standard-cap-left-menu
+	icon-middle-menu:	spol-middle
+	icon-right-menu:	DataAvailable
+	label-blanking:		false
+	maxdz-center:		30
+	maxdz-nsteps:		17
+	maxdz-step:		4
+	limit-proc:		contour-putup-adj
+	platform:		SOMETHING
+	radialvelocity-center:	0
+	radialvelocity-nsteps:	17
+	radialvelocity-step:	5
+	representation:		filled-contour
+	require:		contour, simple-color, spol-gridded
+	scale-mode:		manual

@@ -1,0 +1,9 @@
+!
+! Color tables for lightning displays.
+!
+define widget lightning-color intmenu 'lightning color'
+	title 'Color tables'
+	line
+	entry 'Rainbow colors' 'parameter #icon_component color-table revrainbow'
+	entry 'Gray scale' 'parameter #icon_component color-table smallrevgray'
+endmenu

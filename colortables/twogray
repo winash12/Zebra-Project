@@ -1,0 +1,4 @@
+colortable twogray
+	xcolor gray10
+	xcolor gray90
+endtable

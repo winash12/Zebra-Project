@@ -1,0 +1,101 @@
+!
+! Special stuff for cross-section plots
+!
+
+define widget horiz-global-left intmenu 'Horizontal global left menu'
+	title 'Global Options'
+	line
+	submenu 'Height Range' 'height-range'
+	line
+	entry 'Overlay Times Window...' 'popup overlay'
+	entry 'Movie Controller...' 'popup movie'
+	entry 'Generate Images...' 'popup imagecrank'
+	entry 'Model Forecast Times...' 'popup model'
+	line
+	submenu 'Window Operations' global-window-ops
+	submenu 'Layout Parameters'  global-layout
+	submenu 'X-Z Axis Font Size' scale-size
+	submenu 'X-Y Coordinate Labels' bottom-label
+	line
+	entry 'Help on this Plot Type' 'plot-type-help'
+endmenu
+
+
+define widget bottom-label intmenu 'bottom-label'
+       title 'Bottom Label Coordinates'
+       line
+       entry 'Longitude, Latitude' \
+	     'parameter #icon_component bottom-label-type latlon' \
+	     (PDParam(icon_component,"bottom-label-type") <> 'xy')
+       entry 'X km, Y km from Origin' \
+	     'parameter #icon_component bottom-label-type xy' \
+	     (PDParam(icon_component,"bottom-label-type") = 'xy')
+endmenu
+
+define widget height-range intmenu 'height range'
+	title 'Height Ranges'
+	line
+	entry '0-3 km' 'zrange 0 3'
+	entry '0-6 km' 'zrange 0 6'
+	entry '0-12 km' 'zrange 0 12'
+	entry 'Custom' 'i_adjust_global z-limit-proc'
+endmenu
+
+procedure zrange min string max string
+	parameter #icon_component z-min #min
+	parameter #icon_component z-max #max
+endprocedure
+
+procedure adj_xsect_limits
+	local zmin PDParam("global","z-min")
+	local zmax PDParam("global","z-max")
+	activate doublefloat "global" "z-min" "Bottom (km):" #zmin \
+		"z-max" "Top (km):" #zmax
+endprocedure
+
+define widget scale-size intmenu ''
+	title 'X-Z Axis Font Size'
+	line
+	entry 'Extra small' 'parameter global annot-height 0.02'
+	entry 'Small' 'parameter global annot-height 0.03'
+	entry 'Medium' 'parameter global annot-height 0.04'
+	entry 'Large' 'parameter global annot-height 0.06'
+endmenu
+
+procedure toggle_main 
+    if (pd_defined ("p_fcontour", "field"))
+	if (pd_param ("p_fcontour", "field", "string") = "maxdz")
+		parameter p_fcontour scale-mode "manual"
+		parameter p_fcontour radialvelocity-center "0"
+		parameter p_fcontour radialvelocity-step "-5"
+	        parameter p_fcontour color-table "carbone17"
+		parameter p_fcontour field "radialvelocity"
+		parameter p_fcontour.0 scale-mode "manual"
+		parameter p_fcontour.0 radialvelocity-center "0"
+		parameter p_fcontour.0 radialvelocity-step "-5"
+	        parameter p_fcontour.0 color-table "carbone17"
+		parameter p_fcontour.0 field "radialvelocity"
+		parameter p_fcontour.1 scale-mode "manual"
+		parameter p_fcontour.1 radialvelocity-center "0"
+		parameter p_fcontour.1 radialvelocity-step "5"
+	        parameter p_fcontour.1 color-table "carbone17"
+		parameter p_fcontour.1 field "radialvelocity"
+	else
+		parameter p_fcontour scale-mode "manual"
+		parameter p_fcontour maxdz-center "30"
+   		parameter p_fcontour maxdz-step "4"
+	        parameter p_fcontour color-table "carbone17"
+		parameter p_fcontour field "maxdz"
+		parameter p_fcontour.0 scale-mode "manual"
+		parameter p_fcontour.0 maxdz-center "30"
+   		parameter p_fcontour.0 maxdz-step "4"
+	        parameter p_fcontour.0 color-table "carbone17"
+		parameter p_fcontour.0 field "maxdz"
+		parameter p_fcontour.1 scale-mode "manual"
+		parameter p_fcontour.1 maxdz-center "30"
+   		parameter p_fcontour.1 maxdz-step "4"
+	        parameter p_fcontour.1 color-table "carbone17"
+		parameter p_fcontour.1 field "maxdz"
+	endif
+    endif	
+endprocedure

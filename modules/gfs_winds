@@ -1,0 +1,22 @@
+require winds
+!
+! Override winds-degrade from "winds"
+!
+define widget winds-degrade intmenu ' '
+	title 'Data Degradation'
+	line
+	entry 'Show All Vectors' 'change-degrade 1' \
+		(PDParam(icon_component,'degrade') = '1')
+	entry 'Every Other' 'change-degrade 2' \
+		(PDParam(icon_component,'degrade') = '2')
+	entry 'Every 3rd' 'change-degrade 3' \
+		(PDParam(icon_component,'degrade') = '3')
+	entry 'Every 4th' 'change-degrade 4' \
+		(PDParam(icon_component,'degrade') = '4')
+	entry 'Every 5th' 'change-degrade 5' \
+		(PDParam(icon_component,'degrade') = '5')
+	entry 'Every 10th' 'change-degrade 10' \
+		(PDParam(icon_component,'degrade') = '10')
+	entry 'Every 20th' 'change-degrade 20' \
+		(PDParam(icon_component,'degrade') = '20')
+endmenu

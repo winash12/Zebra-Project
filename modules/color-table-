@@ -1,0 +1,54 @@
+!
+! A pulldown menu allowing a choice of color tables.
+!
+if (defined ('ui$widget_table:color-tables'))
+	set wname 'default-Color-tables'
+else
+	set wname 'Color-tables'
+endif
+
+define widget #wname intmenu 'ctbl'
+	title 'Color tables'
+	line
+	entry 'Alpine (52)' 'CTSet Alpine' \
+		(PDParam (icon_component, 'color-table') = 'Alpine')
+	entry 'Anomaly (9)' 'CTSet anomaly' \
+		(PDParam (icon_component, 'color-table') = 'anomaly')
+	entry 'Black and white stepped (16)' 'CTSet 16gray' \
+		(PDParam(icon_component, 'color-table') = '16gray')
+	entry 'Black and white log (36)' 'CTSet newgray' \
+		(PDParam(icon_component, 'color-table') = 'newgray')
+	entry 'Carbone (17)' 'CTSet carbone17' \
+		(PDParam (icon_component, 'color-table') = 'carbone17')
+	entry 'Chris (15)' 'CTSet chris' \
+		(PDParam (icon_component, 'color-table') = 'chris')
+	entry 'Cook (16)' 'CTSet gcook16' \
+		(PDParam (icon_component, 'color-table') = 'gcook')
+	entry 'Cook (32)' 'CTSet cook32' \
+		(PDParam(icon_component, 'color-table') = 'cook32')
+	entry 'Cook smooth (127)' 'CTSet scook' \
+		(PDParam(icon_component, 'color-table') = 'scook')
+	entry 'Hot and cold (31)' 'CTSet hotcold' \
+		(PDParam (icon_component, 'color-table') = 'hotcold')
+	entry 'New wild (25)' 'CTSet wild_new' \
+		(PDParam (icon_component, 'color-table') = 'wild_new')
+	entry 'Rainbow' 'CTSet Rainbow' \
+		(PDParam(icon_component, 'color-table') = 'Rainbow')
+	entry 'Red/Blue (2)' 'CTSet RedBlue' \
+		(PDParam (icon_component, 'color-table') = 'RedBlue')
+	entry 'Red/Yellow (2)' 'CTSet RedYellow2' \
+		(PDParam (icon_component, 'color-table') = 'RedYellow2')
+	entry 'Red/Yellow/Blue (3)' 'CTSet SmallRainbow' \
+		(PDParam(icon_component, 'color-table') = 'SmallRainbow')
+	entry 'Reverse Rainbow' 'CTSet RevRainbow' \
+		(PDParam(icon_component, 'color-table') = 'RevRainbow')
+	entry 'Tomislav' 'CTSet tomislav' \
+		(PDParam (icon_component, 'color-table') = 'tomislav')
+	entry 'Wild' 'CTSet wild (25)' \
+		(PDParam (icon_component, 'color-table') = 'wild')
+endmenu
+
+
+procedure CTSet table string
+	parameter #icon_component color-table #table
+endprocedure

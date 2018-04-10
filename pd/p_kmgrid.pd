@@ -1,0 +1,19 @@
+!
+! Generic km grid component.
+!
+global
+	pd-name:	p_kmgrid
+p_kmgrid
+	annot-height:	15
+	field:		grid
+	icon:		grid
+	icon-left-menu:	standard-cap-left-menu
+	icon-middle-menu:	kmgrid-origins
+	icon-right-menu:	kmgrid-right
+	lat-lon:	false
+	line-width:	0
+	platform:	irrelevant
+	representation:	overlay
+	require:	grid, simple-color
+	x-spacing:	10
+	y-spacing:	10

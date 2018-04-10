@@ -1,0 +1,132 @@
+!
+! Useful stuff for contours.
+!
+
+
+!
+! The right button menu (for CAP contours of IRGrid data).
+!
+define widget contour-right intmenu 'contour right'
+	title 'Contour plot options'
+	line
+	submenu 'Contour type' 'contour-types'
+	submenu 'Label options' 'contour-label-options'
+	entry 'Color-coded contours' 'ToggleBoolean color-mono' \
+		(PDParam(icon_component,'color-mono') <> 'true')
+	submenu 'Contour color (when mono)' 'simple-color'
+	submenu 'Color table (when coded)' 'con-ctables'
+	submenu 'Line width' linewidth
+	entry 'Interpolation...' 'require interp; popup InterpParams'
+	entry 'Adjust range limits...' 'require range; popup range-limits'
+endmenu
+
+!
+! The right button menu for model data.
+!
+define widget contour-model-right intmenu 'contour right'
+	title 'Model contour plot options'
+	line
+	entry 'Pop up model widget' 'popup model'
+	line
+	submenu 'Contour type' 'contour-types'
+	submenu 'Label options' 'contour-label-options'
+	entry 'Color-coded contours' 'ToggleBoolean color-mono' \
+		(PDParam(icon_component,'color-mono') <> 'true')
+	submenu 'Contour color (when mono)' 'simple-color'
+	submenu 'Line width' linewidth
+endmenu
+
+!
+! Various right button submenus
+!
+define widget contour-types intmenu 'contour types'
+	title 'Contour representation'
+	line
+	entry 'Line contours' 'ContourType "contour"' \
+	     (PDParam(icon_component,'representation') = 'contour')
+	entry 'Solid contours' 'ContourType "filled-contour"' \
+	     (PDParam(icon_component,'representation') = 'filled-contour')
+endmenu
+
+
+procedure ContourType type string
+	parameter #icon_component representation #type
+!
+! Move filled contours to the bottom
+!
+	if (type = "filled-contour")
+		move #icon_component 1
+	endif
+endprocedure
+
+
+define widget contour-label-options intmenu 'label options'
+	title 'Contour labelling'
+	line
+	entry 'Label contours' 'ToggleBoolean do-labels' \
+		(PDParam(icon_component,'do-labels') <> 'false')
+	entry 'Blank data under labels' 'ToggleBoolean label-blanking' \
+		(PDParam(icon_component,'label-blanking') <> 'false')
+endmenu
+
+
+
+define widget con-ctables intmenu 'color tables'
+	title 'Contour color tables'
+	line
+	entry 'All white' 'con-setctable AllWhite' \
+		(PDParam(icon_component, 'color-table') = 'AllWhite')
+	entry 'Anomaly (9)' 'con-setctable anomaly' \
+		(PDParam (icon_component, 'color-table') = 'anomaly')
+	entry 'Carbone (17)' 'con-setctable carbone17' \
+		(PDParam(icon_component, 'color-table') = 'carbone17')
+	entry 'Contour' 'con-setctable Contour' \
+		(PDParam(icon_component, 'color-table') = 'Contour')
+	entry 'Cook (16)' 'con-setctable cook16' \
+		(PDParam(icon_component, 'color-table') = 'cook16')
+	entry 'Cook (32)' 'con-setctable cook32' \
+		(PDParam(icon_component, 'color-table') = 'cook32')
+	entry 'Cook smooth (127)' 'con-setctable scook' \
+		(PDParam(icon_component, 'color-table') = 'scook')
+	entry 'Hot and cold (31)' 'con-setctable hotcold' \
+		(PDParam(icon_component, 'color-table') = 'hotcold')
+	entry 'New wild' 'con-setctable wild_new' \
+		(PDParam(icon_component, 'color-table') = 'wild_new')
+	entry 'Rainbow' 'con-setctable Rainbow' \
+		(PDParam(icon_component, 'color-table') = 'Rainbow')
+	entry 'Red/Blue' 'con-setctable RedBlue' \
+		(PDParam(icon_component, 'color-table') = 'RedBlue')
+	entry 'Red/Yellow (2)' 'con-setctable RedYellow2' \
+		(PDParam(icon_component, 'color-table') = 'RedYellow2')
+	entry 'Red/Yellow/Blue (3)' 'con-setctable SmallRainbow' \
+		(PDParam(icon_component, 'color-table') = 'SmallRainbow')
+	entry 'Reverse Rainbow' 'con-setctable RevRainbow' \
+		(PDParam(icon_component, 'color-table') = 'RevRainbow')
+	entry 'Shannon' 'CTSet Shannon' \
+		(PDParam(icon_component, 'color-table') = 'Shannon')
+	entry 'Shannon_40_45_50' 'CTSet Shannon_40_45_50' \
+		(PDParam(icon_component, 'color-table') = 'Shannon_40_45_50')
+	entry 'Shannon_40_46_52' 'CTSet Shannon_40_46_52' \
+		(PDParam(icon_component, 'color-table') = 'Shannon_40_46_52')
+	entry 'Shannon_40_47_54' 'CTSet Shannon_40_47_54' \
+		(PDParam(icon_component, 'color-table') = 'Shannon_40_47_54')
+	entry 'Tomislav' 'con-setctable tomislav' \
+		(PDParam (icon_component, 'color-table') = 'tomislav')
+	entry 'Wild' 'con-setctable wild' \
+		(PDParam(icon_component, 'color-table') = 'wild')
+endmenu
+
+
+procedure con-setctable table string
+	parameter #icon_component color-table #table
+endprocedure
+
+
+
+!
+! A procedure to put up the center/step adjuster.
+!
+procedure contour-putup-adj comp string
+	require ctr-step
+	popup center-step
+endprocedure

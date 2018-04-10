@@ -1,0 +1,363 @@
+! $Id: IconBar,v 1.3 1995/08/03 21:08:11 corbet Exp $
+!
+! Generic IconBar template
+!
+
+!set ui$bitmap_directory concat(c$libdir, "/icons")
+
+!
+! This is the iconbar menu itself.....
+!
+define widget iconbar menubar " "
+	noheader
+	!
+	! Now we can define the menus themselves.
+	!
+	menu help bitmap iconbar-help
+		title 'Zeb Help Access'
+		line
+		entry 'Introduction' 'help intro'
+		entry 'On-line topics' 'help index'
+		entry 'Starting Zebra' 'help start'
+		entry 'Shutting down' 'help shut-down'
+		entry 'Keys and mouse buttons' 'help keys'
+		entry 'The icon bar' 'help iconbar'
+		entry 'Editing display configurations' 'help editing-configs'
+		line
+		entry 'Horizontal plots' 'help horizontal-plots'
+		entry 'Skew-t plots' 'help skewt'
+		entry 'XYGraph plots' 'help xy-graphs'
+		entry 'Cross-section plots' 'help cross-section'
+	endmenu
+	menu tools bitmap tools-big
+		title 'Tools'
+		line
+		entry 'Time widget'	'popup time'
+!		entry 'Print single window to phaser611' \
+!	'shell "/home/disk/meso-home/meso/bin/xdump | /usr/local/bin/xwd2ps | lpr -Pphaser611"'
+!		entry 'Print entire screen to phaser611' \
+!	'shell "/home/disk/meso-home/meso/bin/xdump.all | /usr/local/bin/xwd2ps -g 0.9 | lpr -Pphaser611"'
+		entry 'Digital clock (upper right)' \
+		   'shell "xclock -digital -update 1 -geometry -0+0 &"'
+		entry 'Time looping' 'show_timecrank'
+		entry 'Position entry widget' 'popup enter'
+		entry 'Alarm Widget'	'popup alarm'
+		line
+		entry 'Add display window' 'popup newwindow'
+		entry 'Delete display window' 'popup zorchwindow'
+		entry 'Save current configuration' 'popup saveconfig'
+		line
+		entry 'Enter VOR aircraft locations' \
+		      'shell "xterm -e vor_position &"'
+		entry 'P-3 VOR aircraft locations' \
+      'shell "xterm -T N42RF-record -e vor_position n42rf P-3...N42RF &"'
+		entry 'Enter Lat/Lon aircraft locations' 'popup enter'
+		line
+		entry 'Data store contents' 'shell "dsdwidget &"'
+		entry 'Data store management' 'shell "dsmanage &"'
+		line
+		entry 'Shut down Zebra' 'shutdown'
+	endmenu
+!
+! The project display configurations are added in this menu
+!
+	menu configs bitmap configs
+		title 'Display configurations'
+		line
+	!
+	! Example:
+	!	entry 'Wide-screen satellite' 'display wide' \
+	!		(dm$config = 'wide')
+	!
+		line
+		entry 'empty screen' 'display empty' (dm$config = 'empty')
+		entry "South America" 'display trmm_interp_xsect' \
+			(dm$config = 'trmm_interp_xsect')
+		entry "South America NEW" 'display PR_interp_xsect' \
+			(dm$config = 'PR_interp_xsect')
+	endmenu
+!
+! General platform/data menus here
+!
+! Example:
+!	menu satellite bitmap satellite
+!		title 'Satellite Data'
+!		line
+!		entry 'GOES Visible' 'putc2 c_goes platform goes field vis'
+!		entry 'GOES IR' 'putc2 c_goes platform goes field ir'
+!		line
+!	endmenu
+!	menu radar bitmap radar
+!		title 'Radar Data'
+!		line
+!		entry 'S-Pol ppi sweeps' 'putc3 p_polar platform spol_ppi_raw field dz icon radar_spol_ppi'
+!		entry 'S-Pol rhi sweeps' 'putc3 p_polar platform spol_rhi_raw field dz icon radar_spol_rhi'
+!		entry 'S-Pol gridded' 'putc3 p_raster platform spol field maxdz icon radar_spol'
+!		entry 'S-Pol gridded xsect' 'putc3 p_fcontour platform spol field maxdz icon radar_spol_xsect'
+!		entry 'Bogus' 'PutRadar bogus'
+!	endmenu
+!	menu aircraft bitmap aircraft
+!		title 'Aircraft'
+!		line
+!		entry 'N42RF' \
+!		  'putc3 p_track platform n42rf icon n42rf color yellow'
+!	endmenu
+	menu 'overlays' bitmap overlays
+		title 'Static Overlays'
+		line
+!		entry 'Topography for CAP plot' \
+!			'putc2 p_elev platform elev field elev'
+!		entry 'Topography for xsect' \
+!			'putc3 p_topo platform topo_lowres field topo icon topo_xsect'
+!		line
+!		entry 'Northwest Map' \
+!			'putc1 p_map platform default'
+!		line
+!		entry 'Camano Location' \
+!			'putc2 p_loc platform camano-nxd label-size 0.025'
+!		entry 'Seatac Location' \
+!			'putc2 p_loc platform seatac label-size 0.025'
+!		entry 'SPOL Location' \
+!			'putc2 p_loc platform spol label-size 0.025'
+!		line
+		entry 'X-Y Grid (km)' \
+			'putc2 p_kmgrid lat-lon false color white'
+		entry 'Lat/Lon Grid ' \
+			'putc2 p_llgrid lat-lon true color white'
+		line
+		submenu 'Range Rings' GridsAndRings
+		line
+		entry 'Window Bounds' 'put_wbounds c_wbounds'
+	endmenu
+enddef
+
+!
+! Put in window bounds.
+!
+procedure put_wbounds comp string
+!
+! Get the window we want to see.
+!
+	set wbounds_win "none"
+	pickwin wbounds_win
+	if (wbounds_win = "none")
+		beep
+		return
+	endif
+!
+! And now the place where it goes.
+!
+	set target_win "none"
+	pickwin target_win
+	if (target_win = "none")
+		beep
+		return
+	endif
+!
+! Fix up the component and ship it over.
+!
+	parameter #comp #comp platform #wbounds_win
+	add #comp #comp #target_win
+endprocedure
+
+
+read dm.crank
+
+procedure show_timecrank
+
+	if (dm$config = "improve1_default")
+	   timecrank-popup "zwd default 0"
+	elseif (dm$config = "spol_rhi")
+	   timecrank-popup "zwd spol_rhi 0"
+	else
+	   timecrank-popup "zwd "
+	endif	
+
+endprocedure
+
+
+!
+! Add radar locations
+!
+procedure do_radar_locs
+	local radars "spol"
+	putc2 p_loc active-icon false platform #radars
+endprocedure
+
+
+!
+! Put radar data in a CAP or xsect window
+!
+procedure PutRadar platform string
+    !
+    ! Start by finding a window.
+    !
+	set target_win "none"
+	pickwin target_win
+	if (target_win = "none")	! They picked root or something
+		beep
+		return
+	endif
+
+	local ptype PDParam(target_win,'global','plot-type')
+    !
+    ! Choose the appropriate pd component template based on the plot type
+    !
+	if (ptype = "xsect")
+		local comp "p_fcontour"
+		parameter #comp #comp grid-method bilinear
+	else
+		local comp "p_raster"
+	endif
+    !
+    ! Tweak it up and send it out
+    !
+	parameter #comp #comp platform #platform
+	parameter #comp #comp icon #platform
+	parameter #comp #comp field maxdz
+	sendout #comp #target_win
+endprocedure
+
+
+!
+! Submenu for grids and range rings.
+!
+define widget GridsAndRings intmenu 'grid and rings and nifty stuff'
+	title 'Range Rings'
+	entry 'Camano Is. range rings' 'putc1 p_rings platform camano-nxd'
+	entry 'SeaTac range rings' 'putc1 p_rings platform seatac'
+	entry 'SPOL range rings' 'putc1 p_rings platform spol'
+endmenu
+
+!
+! The simple case: add a component to a window with no changes.
+!
+procedure put_component name string
+!
+! Get the target window.
+!
+	set target_win "none"
+	pickwin target_win
+	if (target_win = "none")	! They picked root or something
+		beep
+		return
+	endif
+!
+! If this component is already present in the window, remove it.  Otherwise
+! put it in.
+!
+	if (pd_defined (target_win, name, "platform"))
+		message 'Already there'
+		remove #target_win #name
+	else
+		add #name #name #target_win
+	endif
+endprocedure
+
+
+
+!
+! Add a component to a window, changing the field name.
+!
+procedure PutCompField comp string field string
+!
+! Get the target window.
+!
+	set target_win "none"
+	pickwin target_win
+	if (target_win = "none")	! They picked root or something
+		beep
+		return
+	endif
+	sound chord
+!
+! Send the stuff over.
+!
+	parameter #comp #comp "field" #field
+	add #comp #comp #target_win
+endprocedure
+
+
+!
+! Add a component to a window, changing the field name.  This version puts
+! the component at the bottom of the stack.
+!
+procedure PutBCompField comp string field string radarspace string
+!
+! Get the target window.
+!
+	set target_win "none"
+	pickwin target_win
+	if (target_win = "none")	! They picked root or something
+		beep
+		return
+	endif
+	sound chord
+!
+! If the component is already in the window, just change the field.
+!
+	if (pd_defined (target_win, comp, "platform"))
+		parameter #target_win #comp "field" #field
+!
+! Otherwise change the field *in DM* to avoid making the GP draw twice,
+! then send it over.
+!
+	else
+		parameter #comp #comp "field" #field
+		add #comp #comp #target_win 1
+	!
+	!  Take care of the radar-space parameter.
+	!
+		parameter #target_win "global" "radar-space" #radarspace
+	endif
+endprocedure
+
+
+!
+! Remove a component from a window.
+!
+procedure ZapComp comp string
+!
+! Get the target window.
+!
+	set target_win "none"
+	pickwin target_win
+	if (target_win = "none")	! They picked root or something
+		beep
+		return
+	endif
+!
+! If this component truly exists in the window, get rid of it.
+!
+	if (pd_defined (target_win, comp, "platform"))
+		remove #target_win #comp
+	endif
+endprocedure
+
+
+
+!
+! Add a component to a window, changing an arbitrary parameter.
+!
+procedure PutCompX comp string param string value string
+!
+! Get the target window.
+!
+	set target_win "none"
+	pickwin target_win
+	if (target_win = "none")	! They picked root or something
+		beep
+		return
+	endif
+	sound chord
+
+	parameter #comp #comp #param #value
+	add #comp #comp #target_win
+endprocedure
+
+
+
+
+
+
+

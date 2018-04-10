@@ -1,0 +1,87 @@
+!
+! Range rings support.
+!
+
+!
+! Origins menu used by the zebra/lib/gplib/rings plot component
+!
+define widget rings-origins intmenu "range ring origins"
+	title "Range ring origins"
+	line
+	entry 'WSR88D' 'parameter #icon_component platform coastalNWS'\
+		(PDParam (icon_component, "platform") = "coastalNWS")
+	entry 'NPOL' 'parameter #icon_component platform NPOL'\
+		(PDParam (icon_component, "platform") = "NPOL")
+endmenu
+
+
+
+define widget rings-right intmenu 'x'
+	title 'Range ring options'
+	line
+	entry '10 km rings' 'parameter #icon_component ring-interval 10' \
+		(PDParam (icon_component, "ring-interval") = '10')
+	entry '15 km rings' 'parameter #icon_component ring-interval 15' \
+		(PDParam (icon_component, "ring-interval") = '15')
+	entry '20 km rings' 'parameter #icon_component ring-interval 20' \
+		(PDParam (icon_component, "ring-interval") = '20')
+	entry '30 km rings' 'parameter #icon_component ring-interval 30' \
+		(PDParam (icon_component, "ring-interval") = '30')
+	entry '40 km rings' 'parameter #icon_component ring-interval 40' \
+		(PDParam (icon_component, "ring-interval") = '40')
+	line
+	entry '10 NM rings' 'parameter #icon_component ring-interval 18' \
+		(PDParam (icon_component, "ring-interval") = '18')
+	entry '20 NM rings' 'parameter #icon_component ring-interval 36' \
+		(PDParam (icon_component, "ring-interval") = '36')
+	line
+	entry '10 degree lines' \
+		'parameter #icon_component azimuth-interval 10' \
+		(PDParam (icon_component, "azimuth-interval") = '10')
+	entry '30 degree lines' \
+		'parameter #icon_component azimuth-interval 30' \
+		(PDParam (icon_component, "azimuth-interval") = '30')
+	entry '45 degree lines' \
+		'parameter #icon_component azimuth-interval 45' \
+		(PDParam (icon_component, "azimuth-interval") = '45')
+	entry '90 degree lines' \
+		'parameter #icon_component azimuth-interval 90' \
+		(PDParam (icon_component, "azimuth-interval") = '90')
+	entry '180 degree lines' \
+		'parameter #icon_component azimuth-interval 180' \
+		(PDParam (icon_component, "azimuth-interval") = '180')
+	line
+	entry 'Draw labels' 'ToggleBoolean do-labels' \
+	    (PDSearch (icon_component, "do-labels", "range-ring") <> "false")
+	line
+	submenu 'Ring color' 'simple-color'
+	submenu 'Line width' 'LineWidth'
+	submenu 'Label size' 'RingsLabelSize'
+	submenu 'Ring count' 'RingCount'
+endmenu
+
+define widget RingsLabelSize intmenu 'Label size'
+	title 'Label Size'
+	line
+	entry 'small' 'parameter #icon_component label-size 10' \
+		(PDParam(icon_component, "label-size") = "10")
+	entry 'medium' 'parameter #icon_component label-size 20' \
+		(PDParam(icon_component, "label-size") = "20")
+	entry 'large' 'parameter #icon_component label-size 30' \
+		(PDParam(icon_component, "label-size") = "30")
+endmenu
+
+define widget RingCount intmenu 'ring count'
+	title 'Number of rings'
+	line
+	entry '4' 'parameter #icon_component num-rings 4' \
+		(PDParam(icon_component, "num-rings") = "4")
+	entry '8' 'parameter #icon_component num-rings 8' \
+		(PDParam(icon_component, "num-rings") = "8" or PDParam(icon_component, "num-rings") = "(Undefined)")
+	entry '12' 'parameter #icon_component num-rings 12' \
+		(PDParam(icon_component, "num-rings") = "12")
+	entry '16' 'parameter #icon_component num-rings 16' \
+		(PDParam(icon_component, "num-rings") = "16")
+	entry '20' 'parameter #icon_component num-rings 20' \
+		(PDParam(icon_component, "num-rings") = "20")
+endmenu

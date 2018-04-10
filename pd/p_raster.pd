@@ -1,0 +1,25 @@
+!
+! Generic raster component for things like satellite or nowrad data.
+!
+global
+	pd-name:	p_raster
+p_raster
+	altitude-control:	true
+	color-table:	carbone17
+	field:		SOMETHING
+	icon:		radar
+	icon-left-menu:		standard-cap-left-menu
+	icon-middle-menu:	spol-middle
+	icon-right-menu:	DataAvailable
+	limit-proc:	raster-limit-proc
+	maxdz-center:	30
+	maxdz-nsteps:	17
+	maxdz-step:	4
+	out-of-range-color:	none
+	platform:	SOMETHING
+	radialvelocity-center:	0
+	radialvelocity-nsteps:	17
+	radialvelocity-step:	5
+	representation:	raster
+	require:	raster, spol-gridded
+	scale-mode:	manual

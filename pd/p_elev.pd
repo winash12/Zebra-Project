@@ -1,0 +1,23 @@
+!
+! raster component for map_elev data
+!
+global
+	pd-name:	p_elev
+p_elev
+	altitude-control:	false
+	color-table:	16gray
+	elev-center:	1.8
+	elev-highlight:	-0.05
+	elev-highlight-color:	steelblue
+	elev-highlight-range:	0.1
+	elev-step:	0.3
+	field:		elev
+	icon:		topo
+	icon-left-menu:		raster-left
+	icon-right-menu:	raster-right
+	limit-proc:	raster-limit-proc
+	platform:	map_elev
+	representation:	raster
+	require:	raster
+	sa-show:	false
+	scale-mode:	manual

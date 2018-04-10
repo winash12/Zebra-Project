@@ -1,0 +1,38 @@
+!
+! Deal with radar displays in the polar mode.
+!
+global
+	pd-name:	p_polar
+p_polar
+	altitude-control:	true
+	color-table:		carbone17
+	disable:	false
+	dz-center:	30
+	dz-nsteps:	17
+	dz-step:	4
+	every-sweep:	true
+	every-volume:	true
+	field:		SOMETHING
+	grid-size-ratio:	5
+	icon:		radar
+	icon-left-menu:		standard-cap-left-menu
+	icon-middle-menu:	spol-middle
+	icon-right-menu:	DataAvailable
+	limit-proc:	raster-limit-proc
+	ncp-center:	0
+	ncp-step:	0.25
+	out-of-range-color:	black
+	platform:	spol
+	representation:	polar
+	require:	raster, spol
+	sa-show:	true
+	scale-mode:	manual
+	threshold:	false
+	threshold-field:	ncp
+	threshold-test:	under
+	threshold-value:	0.25
+	trigger:	platform
+	trigger-global:	true
+	ve-center:	0
+	ve-nsteps:	17
+	ve-step:	5

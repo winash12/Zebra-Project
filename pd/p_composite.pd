@@ -1,0 +1,28 @@
+!
+! Generic radar composite component
+!
+global
+        pd-name:        p_composite
+p_composite
+	altitude-control:	true
+	color-table:		carbone17
+	field:			compdz
+        icon-left-menu:         standard-cap-left-menu
+	icon-middle-menu:	FieldMenu
+        icon-right-menu:        raster-right
+	representation:		raster
+	scale-mode:		manual
+	compdz-center:		30.0000
+	compdz-step:		4.0000
+	compdz-nsteps:		17.0000
+	out-of-range-color:	none
+	comprv-center:		0.0000
+	comprv-step:		5.0000
+	comprv-nsteps:		17.0000
+	rainrate-center:	4.0000
+	rainrate-step:		0.5000
+	rainrate-nsteps:	17.0000
+	trigger:		platform
+	trigger-global:		true
+        require:		raster
+        limit-proc:		raster-limit-proc

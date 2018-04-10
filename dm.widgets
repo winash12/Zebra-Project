@@ -1,0 +1,19 @@
+!
+! The new version of the window creation widget
+!
+define widget cw_wintypes intmenu 'Default version'
+       title 'Window types'
+       line
+       entry 'Const Alt X-Y' 'cw_type "Constant altitude"'
+       entry 'Const Alt Polar' 'cw_type "Const Alt Polar"'
+endmenu
+
+procedure ProjectNewWindow wtype string
+	if (wtype = 'Constant altitude')
+		set nw_pd 'cap-template'
+		set nw_bmap 'big'
+	elseif (wtype = 'Const Alt Polar')
+		set nw_pd 'cap-polar-template'
+		set nw_bmap 'big'
+	endif
+endprocedure

@@ -1,0 +1,18 @@
+!
+! wind component template for gfs
+!
+global
+	pd-name:        p_gfs_winds
+p_gfs_winds
+	platform:       CHANGEME
+	icon:           CHANGEME
+	representation: vector
+	u-field:        U
+	v-field:        V
+	arrow-scale:    0.002
+	color:          red
+	degrade:        10
+	icon-left-menu:         standard-cap-left-menu
+	icon-right-menu:        rg-winds-right
+	limit-proc:     adj_arrow_scale
+	require:        mc2_winds, simple-color

@@ -1,0 +1,25 @@
+global
+	axis-bottom-space:	30
+	pd-name:	cap-polar-template
+	add-data-command: cap-add
+	plot-mode:	history
+	plot-time:	now
+	plot-type:	CAP
+	radar-space:	true
+	sa-scale:	0.03
+	ta-scale:	0.04
+	x-max:		250.0
+	x-min:		-250.0
+	y-max:		250.0
+	y-min:		-250.0
+p_map
+	color:	yellow
+	disable:	false
+	field:	map
+	icon:	map
+	icon-middle-menu:	simple-color
+	icon-right-menu:	linewidth
+	line-width:	0
+	platform:	default
+	representation:	overlay
+	require:	simple-color

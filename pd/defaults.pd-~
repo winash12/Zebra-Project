@@ -1,0 +1,285 @@
+!
+! This file contains the default values for some plot description parameters.
+!
+defaults
+	pd-name:			defaults
+!
+! Project origin
+!
+	origin-lat:		37.0
+	origin-lon:	       -97.0
+	origin-alt:		 0.0
+!
+! The default, big picture zoom locations for constant altitude plots.  These
+! values are in km w.r.t. the origin above.  Make them smaller for smaller scale
+! projects and bigger for bigger scale projects...
+!
+	x-min:			-500
+	x-max:			500
+	y-min:			-500
+	y-max:			500
+
+	time-annot-active:	true
+	time-topannot-left-menu: global-time-left-menu
+!
+! Icons to use for various platforms.  The icons themselves can be created
+! using the X Window "bitmap" utility, and saved in the <project>/icons 
+! directory.  In general, it is good to have a separate icon for each platform.
+! Example:
+!
+!	cp2-icon:		cp2
+!	goes-icon:		goes
+!
+!	npol-icon:		radar_npol
+!	null-icon:		null
+!
+! Age limits for data (i.e., when to make the icon red)
+! Although we set a default of 15 minutes, a separate value is generally 
+! used for each platform.  Example:
+!
+!	icon-age-limit:		15m
+!	cp2-icon-age-limit:	2m
+!	goes-icon-age-limit:	120m
+!
+	icon-age-limit:		20m
+	elev-icon-age-limit:		20000d
+	topo-icon-age-limit:		20000d
+
+! Set data age limits:
+!
+	limit-data-age:		true
+	data-age-limit:		60m
+	elev-data-age-limit:	20000d
+	topo-data-age-limit:	20000d
+!
+! Will you be using tracks of mobile platforms?  If so, it can be useful
+! to assign a special color to each one.
+!
+! Example:
+!	electra-color:		orange
+!	kingair-color:		cyan
+!
+	null-color:		white
+!
+! Add named locations to your hearts delight.  
+! Form: 
+!	<sitename>-location:	<lat> <lon> <alt(km)>
+!
+!	bogota-location:   4.63  -74.08  0.0
+!	caracas-location:  10.47  -67.03  0.0
+!	dakar-location:  14.67  -17.47  0.0
+!	elcarmen-location:  6.08  -75.35  0.0 
+!	georgetown-location:   6.75  -58.25  0.0
+!	guatemalacity-location:  14.62  -90.52  0.0
+!	kingston-location:  17.98  -76.82  0.0
+!	kinshasa-location:  -4.30   15.28  0.0
+!	medellin-location:   6.26  -75.58  0.0  
+!	medellin-location:   6.1928  -75.5274  0.0  
+!	mexicocity-location:  19.43  -99.12  0.0
+!	panamacity-location:   8.97  -79.53  0.0
+!	santiago-location:  -33.3  -70.4   0.0
+!       NC
+	kmhx-location:      34.7759313 -76.8762571  0.0
+	krax-location:      35.6654967 -78.4897855  0.0
+	kltx-location:      33.9891631 -78.4291059  0.0
+!       SC
+	kclx-location:      32.6554866 -81.0423124  0.0
+	kcae-location:      33.9487579 -81.1184281  0.0
+	kgsp-location:      34.8833435 -82.2200757  0.0
+!       GA
+	kffc-location:      33.3635771 -84.565866   0.0
+	kvax-location:      30.8903853 -83.0019021  0.0
+	kjgx-location:      32.6755239 -83.3508575  0.0
+!       FL
+	kevx-location:      30.5649908 -85.921559   0.0
+	kjax-location:      30.4846878 -81.7018917  0.0
+	kbyx-location:      24.5974996 -81.7032355  0.0
+	kmbl-location:      28.1131808 -80.6540988  0.0
+	kamx-location:      25.6111275 -80.412747   0.0
+	ktlh-location:      30.397568  -84.3289116  0.0
+	ktbw-location:      27.7054701 -82.40179    0.0
+!       AL
+	kbmx-location:      33.1722806 -86.7698425  0.0
+	keox-location:      31.4605622 -85.4592401  0.0
+	khtx-location:      34.930508  -86.0837388  0.0
+	kmxx-location:      32.5366608 -85.7897848  0.0
+	kmob-location:      30.6795378 -88.2397816  0.0
+!       MS
+	kdgx-location:      32.2797358 -89.9846309  0.0
+	kgwx-location:      33.8967796 -88.3293915  0.0
+!       TN
+	kmrx-location:      36.168538  -83.401779   0.0
+	knqa-location:      35.3447802 -89.8734534  0.0
+	kohx-location:      36.2472389 -86.5625185  0.0
+!       MI
+	kdtx-location:      42.6999677 -83.471809   0.0
+	kapx-location:      44.907106  -84.719817   0.0
+	kgrr-location:      42.893872  -85.5449206  0.0
+	kmqt-location:      46.5311443 -87.5487131  0.0
+!       WI
+	kgrb-location:      44.4984644 -88.111124   0.0
+	karx-location:      43.822766  -91.1915767  0.0
+	kmkx-location:      42.9678286 -88.5506335  0.0
+!       MN
+	kdlh-location:      46.8368569 -92.2097433  0.0
+	kmpx-location:      44.8488029 -93.5654873  0.0
+!       IA
+	kdvn-location:      41.611556  -90.5809987  0.0
+	kdmx-location:      41.7311788 -93.7229235  0.0
+!       MO
+	keax-location:      38.8102231 -94.2644924  0.0
+	ksgf-location:      37.235223  -93.4006011  0.0
+	klsx-location:      38.6986863 -90.682877   0.0
+!       AR
+	ksrx-location:      35.2904423 -94.3619075  0.0
+	klzk-location:      34.8365261 -92.2621697  0.0
+!       LA
+	kpoe-location:      31.1556923 -92.9762596  0.0
+	klch-location:      30.125382  -93.2161188  0.0
+	klix-location:      30.3367133 -89.8256618  0.0
+	kshv-location:      32.450813  -93.8412774  0.0
+!       TX
+	kama-location:      35.2334827 -101.7092478 0.0
+	kewx-location:      29.7039802 -98.028506   0.0
+	kbro-location:      25.9159979 -97.4189526  0.0
+	kcrp-location:      27.7840203 -97.511234   0.0
+	kfws-location:      32.5730186 -97.3031911  0.0
+	kdyx-location:      32.5386009 -99.2542863  0.0
+	kepz-location:      31.8731115 -106.697942  0.0
+	kgrk-location:      30.7217637 -97.3829627  0.0
+	khgx-location:      29.4718835 -95.0788593  0.0
+	kdfx-location:      29.2730823 -100.2802312 0.0
+	klbb-location:      33.6541242 -101.814149  0.0
+	kmaf-location:      31.9433953 -102.1894383 0.0
+	ksjt-location:      31.3712815 -100.4925227 0.0
+!       OK
+	kfdr-location:      34.3620014 -98.9766884  0.0
+	ktlx-location:      35.3333873 -97.2778255  0.0
+	kinx-location:      36.1750977 -95.5642802  0.0
+	kvnx-location:      36.7406166 -98.1279409  0.0
+!       KS
+	kddc-location:      37.7608043 -99.9688053  0.0
+	kgld-location:      39.3667737 -101.7004341 0.0
+	ktwx-location:      38.996998  -96.232618   0.0
+	kict-location:      37.6545724 -97.4431461  0.0
+!       NE
+	kuex-location:      40.320966  -98.4418559  0.0
+	klnx-location:      41.9579623 -100.5759609 0.0
+	koax-location:      41.3202803 -96.3667971  0.0
+!       SD
+	kabr-location:      45.4558185 -98.4132046  0.0
+	kudx-location:      44.1248485 -102.8298157 0.0
+	kfsd-location:      43.5877467 -96.7293674  0.0
+!       ND
+	kbis-location:      46.7709329 -100.7605532  0.0
+	kmvx-location:      47.5279417 -97.3256654   0.0
+	kmbx-location:      48.39303   -100.8644378  0.0
+!       MT
+	kblx-location:      45.8537632 -108.6068165  0.0
+	kggw-location:      48.2064536 -106.6252971  0.0
+	ktfx-location:      47.4595023 -111.3855368  0.0
+	kmsx-location:      47.0412971 -113.9864373  0.0
+!       WY
+	kcys-location:      41.1519308 -104.8060325  0.0
+	kriw-location:      43.0660779 -108.4773731  0.0
+!       CO
+	kftg-location:      39.7866156 -104.5458126  0.0
+	kgjx-location:      39.0619824 -108.2137012  0.0
+	kpux-location:      38.4595034 -104.1816223  0.0
+!       NM
+	kabx-location:      35.1497579 -106.8239576  0.0
+	kfdx-location:      34.6341569 -103.6186427  0.0
+	khdx-location:      33.0768844 -106.1200923  0.0
+
+	dbz-center:		15
+	dbz-step:		5
+	dbz-nsteps:		11
+	dbz-side-annot-style:	colorbar
+!
+! Default origin for the get position widget.
+!
+	getpos-default-origin:	mexicocity
+!
+! UNLESS YOU NEED TO TWEAK ONE OR MORE OF THE "SAFE" DEFAULTS BELOW, YOU'RE
+! DONE!
+!
+!****************************************************************************
+! 
+! The parameters below are pretty safe defaults and can almost always be left
+! as they are.  Leave them alone unless you know what you're doing!
+!
+
+!
+! Adjust limit procedures.
+!
+	track-arrow-limit-proc:		adj_arrow_scale
+	track-time-limit-proc:		adj_time_period
+	track-centstep-limit-proc:	adj_center_step
+	raster-highrange-limit-proc:	adj_highlight_range
+	raster-centstep-limit-proc:	adj_center_step
+	raster-limit-proc:		adj_center_step
+	vector-limit-proc:		adj_arrow_scale
+	contour-limit-proc:		adj_center_step
+	filled-contour-limit-proc:	adj_center_step
+	contour-limit-proc:		adj_center_step
+	filled-contour-centstep-limit-proc:	adj_center_step
+	contour-centstep-limit-proc:	adj_center_step
+	skewt-pres-limit-proc:		adj_pres_minmax
+	skewt-temp-limit-proc:		adj_temp_minmax
+	global-x-limit-proc:		adj_x_minmax
+	global-y-limit-proc:		adj_y_minmax
+	lightning-limit-proc:		adj_time_step
+!
+! Leave a little space on the left hand side for axis information
+!
+	axis-left-space:	30
+!
+! Where to put the frame cache files and the maximum number of frames
+! to store in the cache.
+!
+	file-path:	/tmp
+	max-frames:	30
+!
+! Command to be executed out of the DataAvailable menu.
+!
+	data-available-command:		DefaultDataAvail
+!
+! Generic icon stuff
+!
+	global-icon:			global
+	icon-color:			yellow
+	icon-background:		midnight blue
+	disabled-icon-color:		gray90
+	disabled-icon-background:	gray40
+	icon-age-foreground:		pink
+	icon-age-background:		red
+!
+! Various menus for the icons in the plot windows.
+!
+	icon-left-menu:			standard-cap-left-menu
+	icon-middle-menu:		FieldMenu
+	global-icon-left-menu:		global-left
+	global-icon-right-menu:		globaltopannot
+!
+! Default to matched top annotation colors where allowed.
+!
+	ta-color-match:			true
+!
+! Post processing mode parameters.
+!
+	post-proc-mode:			true
+	pp-dm-time-adjust:		65m
+!
+! What RBand uses to draw the box/line.  Don't mess with it.
+!
+	xorvalue:			16777215
+	xor-line-width:			3
+!
+! Where cross sections are done.
+!
+	xsect-window:			all
+	xsect-component:		global
+
+
+
+
